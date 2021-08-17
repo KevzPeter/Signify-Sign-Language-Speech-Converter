@@ -1,0 +1,87 @@
+$blue: #0070f3;
+$red: #ff1744;
+$matte: #303030;
+$gris: #ccd4dc;
+$r: 10px;
+
+.App {
+  text-align: center;
+}
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  h4 {
+    margin: 0;
+    display: flex;
+    div {
+      margin-left: 1rem;
+    }
+  }
+}
+.App-link {
+  color: #61dafb;
+}
+main {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #282c34;
+  padding: 2rem 0;
+}
+.webcam,
+canvas {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 150px auto 1rem auto;
+  text-align: center;
+  width: 640px;
+  height: 480px;
+  border-radius: $r;
+}
+.webcam {
+  z-index: 8;
+}
+canvas {
+  z-index: 9;
+}
+
+.text-box {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 4rem;
+  p {
+    margin: 0 2rem;
+    padding: 1rem;
+    background-color: $gris;
+    color: $matte;
+    border-radius: $r;
+    min-width: 200px;
+  }
+  button {
+    padding: 0.5rem;
+    color: #fff;
+    background-color: $blue !important;
+    outline: none !important;
+    border: none !important;
+    border-radius: 8px !important;
+    &:hover {
+      cursor: pointer !important;
+    }
+    &#clear {
+      background-color: $red !important;
+    }
+  }
+}
+.controls {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+}
