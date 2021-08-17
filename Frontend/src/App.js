@@ -6,16 +6,19 @@ import "./App.scss";
 import { drawRect, getText } from "./utilities";
 import Loader from "react-loader-spinner";
 import Speech from "react-speech";
+import SpeechToSign from "./components/speech-to-sign";
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [loading, setLoading] = useState(true); //show loading sign
+  const [mode, setMode] = useState(false); //change mode of conversion
   const [fetcherr, setFetcherr] = useState(false); //show failed to fetch error
   const [text, setText] = useState(""); // holds text to be played
+
   // Main function
   const runCoco = async () => {
-    const net = await tf.loadGraphModel(process.env.model);
+    const net = await tf.loadGraphModel(process.env.REACT_APP_model);
     setInterval(() => {
       detect(net);
     }, 42);
@@ -55,7 +58,7 @@ function App() {
       const classes = await obj[2].array();
       const scores = await obj[4].array();
       // Draw mesh
-      const ctx = canvasRef.current.getContext("2d");
+      const ctx = canvasRef?.current.getContext("2d");
 
       requestAnimationFrame(() => {
         drawRect(boxes[0], classes[0], scores[0], 0.8, videoWidth, videoHeight, ctx);
@@ -83,27 +86,38 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Signify - Sign Language to Speech Converter</h2>
+        <h2>Signify - {!mode ? "Sign Language to Speech" : "Speech to Sign Language"} Converter</h2>
         {loading ? (
           <h4>
             Loading <Loader type="TailSpin" width={30} height={30} color="#0070f3" />
           </h4>
         ) : null}
         {fetcherr ? <h4>Error: Failed to fetch model</h4> : null}
+        <button
+          onClick={() => {
+            setMode(!mode);
+          }}
+        >
+          Switch <i className="fas fa-sync-alt"></i>
+        </button>
       </header>
-      <main>
-        <div className="text-box">
-          <p>Translated text: {text}</p>
-          <div className="controls">
-            <Speech text={text} voice="Google USA English Male" textAsButton={true} displayText={<i class="fas fa-volume-up"></i>} />
-            <button id="clear" onClick={() => clearText()}>
-              Clear
-            </button>
+      {mode ? (
+        <SpeechToSign />
+      ) : (
+        <main>
+          <div className="text-box">
+            <p>Translated text: {text}</p>
+            <div className="controls">
+              <Speech text={text} voice="Google USA English Male" textAsButton={true} displayText={<i className="fas fa-volume-up"></i>} />
+              <button id="clear" onClick={() => clearText()}>
+                Clear
+              </button>
+            </div>
           </div>
-        </div>
-        <Webcam ref={webcamRef} muted={true} className="webcam" />
-        <canvas ref={canvasRef} />
-      </main>
+          <Webcam ref={webcamRef} muted={true} className="webcam" />
+          <canvas ref={canvasRef} />
+        </main>
+      )}
     </div>
   );
 }

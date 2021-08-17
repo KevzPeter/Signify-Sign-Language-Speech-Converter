@@ -1,0 +1,54 @@
+$react: #282c34;
+.container {
+  background-color: $react;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.form {
+  background-color: $react;
+  margin: 1rem 4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  .formgroup {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-size: 1.5rem;
+  }
+  textarea {
+    margin-top: 1rem;
+    background: #ccd4dc;
+    padding: 0.5rem;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    color: #303030;
+    min-height: 100px;
+  }
+  button {
+    padding: 0.5rem;
+    color: #fff;
+    margin-left: 2rem;
+    background-color: #0070f3 !important;
+    outline: none !important;
+    border: none !important;
+    border-radius: 8px !important;
+    &:hover {
+      cursor: pointer !important;
+    }
+  }
+}
+.signContainer {
+  margin: 1rem 0;
+  img {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: #252525;
+    border-radius: 10px;
+  }
+}
