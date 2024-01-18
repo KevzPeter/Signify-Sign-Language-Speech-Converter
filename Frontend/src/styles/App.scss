@@ -1,0 +1,45 @@
+@use "variables" as v;
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: v.$dark-primary;
+}
+.App-header {
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  h1{
+    display: flex;
+    gap: 1rem;
+  }
+}
+.App-footer{
+  color: white;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+.App-link {
+  color: #61dafb;
+}
+main {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.rs-container{
+  width: auto!important;
+}
+.rs-text{
+  width: auto!important;
+  display: flex;
+  margin: 0;
+  font-size: 20px;
+}
