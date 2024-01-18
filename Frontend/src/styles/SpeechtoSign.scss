@@ -1,13 +1,28 @@
-$react: #282c34;
-.container {
-  background-color: $react;
+@use "variables" as v;
+
+.speech-to-sign {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   align-items: center;
-  min-height: 100vh;
+  width: 100%;
+  button.microphone {
+    padding: 1rem !important;
+    font-size: 1.5rem;
+    &#disable {
+      background-color: v.$red !important;
+      &:hover {
+        background-color: v.$red-hover !important;
+        cursor: pointer !important;
+      }
+      &:active {
+        background-color: v.$red-pressed !important;
+        cursor: pointer !important;
+      }
+    }
+  }
 }
 .form {
-  background-color: $react;
   margin: 1rem 4rem;
   display: flex;
   justify-content: space-around;
@@ -18,6 +33,8 @@ $react: #282c34;
     flex-direction: column;
   }
   label {
+    display: flex;
+    flex-direction: column;
     font-size: 1.5rem;
   }
   textarea {
@@ -50,5 +67,39 @@ $react: #282c34;
     margin: 0.5rem;
     background-color: #252525;
     border-radius: 10px;
+  }
+}
+.input-container {
+  background-color: white;
+  min-width: 50%;
+  box-sizing: border-box;
+  border-radius: v.$r;
+  display: flex;
+  flex-direction: column;
+  label {
+    border-radius: v.$r;
+    width: 100%;
+  }
+  input {
+    border-radius: v.$r;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem 1rem;
+    font-size: 2rem;
+    border: none;
+    &:active,
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+  .controls {
+    border-radius: 0 0 8px 8px;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: v.$dark-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }

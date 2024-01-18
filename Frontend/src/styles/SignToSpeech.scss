@@ -1,0 +1,60 @@
+@use "variables" as v;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+  span#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.video-container {
+  position: relative;
+  min-height: 500px;
+  aspect-ratio: 16/9;
+  .webcam,
+  canvas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: v.$r;
+  }
+
+  .webcam {
+    z-index: 1;
+  }
+
+  canvas {
+    z-index: 2;
+  }
+}
+
+.result-container {
+  background-color: white;
+  color: black;
+  min-width: 50%;
+  box-sizing: border-box;
+  border-radius: v.$r;
+  display: flex;
+  flex-direction: column;
+  span#translation {
+    padding: 0 1rem;
+    font-size: 2rem;
+    margin: 2rem 0;
+  }
+  .controls {
+    border-radius: 0 0 8px 8px;
+    padding: 1rem;
+    background-color: v.$dark-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
